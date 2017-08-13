@@ -1,12 +1,12 @@
 /*
-	IMPLEMENTACI覰 DE LISTAS LIGADAS
+	IMPLEMENTACI脫N DE LISTAS LIGADAS
 
-	+ Despu閟 de grabar el v韉eo, note que el c骴igo tiene un par de detalles:
-	   - Si se elimina el 鷏timo elemento, hay que indicarlo en la lista
-		- No se decrementa el contador del tama駉 de la lista
-	   - La verificaci髇 debe ser index<ll->size, m醩 no index<ll->size-1
+	+ Despu茅s de grabar el v铆deo, note que el c贸digo tiene un par de detalles:
+	   - Si se elimina el 煤ltimo elemento, hay que indicarlo en la lista
+	   - No se decrementa el contador del tama帽o de la lista
+	   - La verificaci贸n debe ser index<ll->size, m谩s no index<ll->size-1
 
-	+ Este c骴igo ya tiene solucionados esos detalles, puedes usarlo con confianza
+	+ Este c贸digo ya tiene solucionados esos detalles, puedes usarlo con confianza
 */
 
 #include <stdio.h>
@@ -38,7 +38,7 @@ LinkedList* getNewLinkedList(){
 	return ll;
 }
 
-// Implementaci髇 de las operaciones CRUD
+// Implementaci贸n de las operaciones CRUD
 
 void add(LinkedList* ll, Node* node){
 	if(ll->firstItem == NULL)	ll->firstItem = node;
