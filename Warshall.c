@@ -36,7 +36,7 @@ void fillMatrix(AdjacencyMatrix* M){
 			printf("\nM[%d][%d]: ", i, j);
 			scanf("%d", &M->edgeSet[i][j]);
 			// Validamos que sea de adyacencia
-			if(abs(1-M->edgeSet[i][j]) > 1){
+			if((1-abs(M->edgeSet[i][j])) < 0){
 				printf("\n\tERROR: La matriz solo admite valores binarios\n");
 				j--;
 			}
