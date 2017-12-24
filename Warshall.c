@@ -1,8 +1,8 @@
-/* +----------------------------------------------------
-	| IMPLEMENTACIÓN DEL ALGORITMO DE WARSHALL
+/* 	+----------------------------------------------------
+	| IMPLEMENTACIÃ“N DEL ALGORITMO DE WARSHALL
 	|
-	|	- Creo un tipo matriz para no usar el típico array bidimensional
-	|	- Además, así puedes usar este código para algún otro proyecto
+	|	- Creo un tipo matriz para no usar el tÃ­pico array bidimensional
+	|	- AdemÃ¡s, asÃ­ puedes usar este cÃ³digo para algÃºn otro proyecto
 	|
 	+---------------------------------------------------- */
 
@@ -17,7 +17,7 @@ typedef struct t_matrix {
 	int** edgeSet;
 } AdjacencyMatrix;
 
-// Función para crear una nueva matriz
+// FunciÃ³n para crear una nueva matriz
 AdjacencyMatrix* getNewMatrix(unsigned size){
 	unsigned i;
 	AdjacencyMatrix* m = (AdjacencyMatrix*) malloc(sizeof(AdjacencyMatrix));
@@ -28,7 +28,7 @@ AdjacencyMatrix* getNewMatrix(unsigned size){
 	return m;
 }
 
-// Función para llenar una matriz
+// FunciÃ³n para llenar una matriz
 void fillMatrix(AdjacencyMatrix* M){
 	unsigned i, j;
 	for(i=0; i<M->dimension; i++)
@@ -43,17 +43,18 @@ void fillMatrix(AdjacencyMatrix* M){
 		}
 }
 
-// Función para imprimir los valores de una matriz
+// FunciÃ³n para imprimir los valores de una matriz
 void printMatrix(AdjacencyMatrix* M){
 	unsigned i, j;
 	for(i=0; i<M->dimension; i++){
-		printf("\n\n\t");
+		printf("\n\t");
 		for(j=0; j<M->dimension; j++)
 			printf("%d ", M->edgeSet[i][j]);
 	}
+	printf("\n\n");
 }
 
-// Implementación del algoritmo de Warshall
+// ImplementaciÃ³n del algoritmo de Warshall
 AdjacencyMatrix* Warshall(AdjacencyMatrix* M){
 	AdjacencyMatrix* Wk = M;
 	unsigned i, j, k;
@@ -65,10 +66,12 @@ AdjacencyMatrix* Warshall(AdjacencyMatrix* M){
 }
 
 int main(){
-	// La matriz del vídeo es de dimensión 5
+	// La matriz del vÃ­deo es de dimensiÃ³n 5
 	AdjacencyMatrix* ADJ_MATRIX = getNewMatrix(5);
 	fillMatrix(ADJ_MATRIX);
+	printf("Matriz de adyacencia:\n");
 	printMatrix(ADJ_MATRIX);
+	printf("Matriz de acceso:\n");
 	printMatrix(Warshall(ADJ_MATRIX));
 	free(ADJ_MATRIX);
 	return 0;
