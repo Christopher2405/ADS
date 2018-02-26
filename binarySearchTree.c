@@ -1,3 +1,10 @@
+/*
+	IMPLEMENTACIÓN DE UN ÁRBOL BINARIO DE BÚSQUEDA
+	
+	+ La función ELIMINAR del video no funcionaba, el detalle se ha corregido
+	
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -29,7 +36,7 @@ BinarySearchTree* insert(BinarySearchTree* root, int value){
 
 BinarySearchTree* search(BinarySearchTree* root, int value){
 	if(root == NULL){
-		printf("\n\n\tERROR: El valor %d no existe", value);
+		printf("\n\n\tERROR: El valor %d no existe\n", value);
 		return NULL;
 	} else if(root->data == value){
 		return root;
@@ -70,24 +77,29 @@ void postOrder(BinarySearchTree* root){
 	printf("%d ", root->data);
 }
 
-void remove(BinarySearchTree* root, int value){
-	BinarySearchTree* nodeToDelete = search(root, value);
-	if(nodeToDelete != NULL){
+BinarySearchTree* remove(BinarySearchTree* root, int value){
+	if(root == NULL)
+		return NULL;
+	else if(value < root->data)
+		root->leftChild = remove(root->leftChild, value);
+	else if(value > root->data)
+		root->rightChild = remove(root->rightChild, value);
+	else {
 		if(root->leftChild==NULL && root->rightChild==NULL)
-			free(nodeToDelete);
+			root = NULL;
+		else if(root->leftChild == NULL)
+			root = root->rightChild;
+		else if(root->rightChild == NULL)
+			root = root->leftChild;
 		else {
-			BinarySearchTree* explorer;
-			if((explorer == nodeToDelete->leftChild)){
-				while(explorer->rightChild)
-					explorer = explorer->rightChild;
-			} else if((explorer == nodeToDelete->rightChild)){
-				while(explorer->leftChild)
-					explorer = explorer->leftChild;
-			}
-			nodeToDelete->data = explorer->data;
-			free(explorer);
+			BinarySearchTree* explorer = root->rightChild;
+			while(explorer->leftChild)
+				explorer = explorer->leftChild;
+			root->data = explorer->data;
+			root->rightChild = remove(root->rightChild, explorer->data);
 		}
 	}
+	return root;
 }
 
 void destroyTree(BinarySearchTree* root){
@@ -122,11 +134,3 @@ int main(){
 	destroyTree(TREE);
 	return 0;
 }
-
-
-
-
-
-
-
-
